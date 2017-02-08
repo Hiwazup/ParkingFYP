@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1056384693797",
+    "firebase_url": "https://parkingfyp.firebaseio.com",
+    "project_id": "parkingfyp",
+    "storage_bucket": "parkingfyp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1056384693797:android:7155578ac5001717",
+        "android_client_info": {
+          "package_name": "com.martin.parkingfyp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1056384693797-vavshgd11bhp8ik6mptq553cf0d6723r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuus_3A4HRqeRZrve0M-d6Kap2nxoTAJw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1056384693797-vavshgd11bhp8ik6mptq553cf0d6723r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

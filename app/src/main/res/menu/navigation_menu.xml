@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/car_parks"
+        android:icon="@mipmap/ic_local_parking_black_24dp"
+        android:title="Check Availabiltiy" />
+    <item
+        android:id="@+id/map"
+        android:icon="@mipmap/ic_directions_black_24dp"
+        android:title="Map" />
+    <item
+        android:id="@+id/about"
+        android:icon="@mipmap/ic_info_black_24dp"
+        android:title="About" />
+</menu>
