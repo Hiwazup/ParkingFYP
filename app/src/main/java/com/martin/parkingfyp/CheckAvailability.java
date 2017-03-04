@@ -40,13 +40,13 @@ public class CheckAvailability extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_availability);
         setToolbarText("Availability");
-        swipe = (SwipeRefreshLayout)findViewById(R.id.swipeRefresh);
-        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
+        //swipe = (SwipeRefreshLayout)findViewById(R.id.swipeRefresh);
+        //swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            /*@Override
             public void onRefresh() {
                 requestData();
             }
-        });
+        });*/
 
     }
 

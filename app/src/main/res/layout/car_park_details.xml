@@ -10,28 +10,53 @@
         android:layout_height="wrap_content"
         android:text="header"
         android:id="@+id/details_title"
-        android:textSize="30dp"
+        android:textSize="28sp"
         android:textStyle="bold"
         android:textColor="#DE000000"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="16dp"
-        android:orientation="horizontal">
+        android:paddingTop="10dp"
+        android:orientation="vertical">
+
+        <!--<TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/address"
+            android:padding="10dp"
+            android:textSize="16sp"/>-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/details_free_spaces"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:textSize="24sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/details_spaces"
-            android:textSize="24dp"
-            android:layout_weight="1"/>
+            android:padding="10dp"
+            android:textSize="24sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/details_status"
-            android:textSize="24dp"
-            android:layout_weight="2"/>
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:textSize="24sp" />
     </LinearLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/Day_Table">
+
+
+    </TableLayout>
+
+
 </LinearLayout>

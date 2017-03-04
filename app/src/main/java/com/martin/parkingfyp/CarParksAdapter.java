@@ -3,12 +3,19 @@ package com.martin.parkingfyp;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.martin.parkingfyp.model.CorkCarPark;
+import com.martin.parkingfyp.model.CorkCarParkDetails;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,11 +27,29 @@ import java.util.List;
 
 public class CarParksAdapter extends RecyclerView.Adapter<CarParksAdapter.ViewHolder> {
     private ArrayList<CorkCarPark.Result.Records> mCarParks;
+    private ArrayList<CorkCarParkDetails> mCorkCarParkDetails;
     private Context mContext;
+    private DatabaseReference mDatabase = mDatabase = FirebaseDatabase.getInstance().getReference("carparks");
 
     public CarParksAdapter(Context context, ArrayList<CorkCarPark.Result.Records> carParks){
         mContext = context;
         mCarParks = carParks;
+        //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //mCarParks.clear();
+                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                    mCorkCarParkDetails.add(postSnapshot.getValue(CorkCarParkDetails.class));
+                }
+                notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d("Database",  "Failed to Read", databaseError.toException());
+            }
+        });
     }
 
     private Context getContext() {
