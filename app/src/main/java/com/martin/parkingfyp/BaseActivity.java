@@ -38,8 +38,8 @@ public class BaseActivity extends AppCompatActivity implements
     private ActionBarDrawerToggle drawerToggle;
     private static final String BASE_URL = "http://data.corkcity.ie/";
     private CorkParkingAPI corkCarPark;
-    protected DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("carparks");
-    protected DatabaseReference mRef_Hours = FirebaseDatabase.getInstance().getReference("opening_hours");
+    private static FirebaseDatabase mDatabase;
+    protected DatabaseReference mRef = getDatabase().getReference();
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
@@ -55,6 +55,14 @@ public class BaseActivity extends AppCompatActivity implements
             toolbar.setVisibility(View.GONE);
         }
         setUpNavView();
+    }
+
+    public static FirebaseDatabase getDatabase(){
+        if(mDatabase == null){
+            mDatabase = FirebaseDatabase.getInstance();
+            mDatabase.setPersistenceEnabled(true);
+        }
+        return mDatabase;
     }
 
     public void requestData() {
