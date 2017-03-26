@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -6,18 +6,13 @@
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:id="@+id/map_toobar">
-        <RelativeLayout
+        android:id="@+id/map_toolbar"
+        android:background="@color/colorPrimary">
+        <fragment
+            android:id="@+id/place_autocomplete_fragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.v7.widget.SearchView
-                android:id="@+id/map_search"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
-        </RelativeLayout>
-
+            android:layout_height="wrap_content"
+            android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"/>
     </android.support.v7.widget.Toolbar>
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
@@ -25,8 +20,6 @@
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_below="@+id/map_toobar"
         android:layout_height="match_parent"
         tools:context="com.viralandroid.googlemapsandroidapi.MapsActivity" />
-
-</RelativeLayout>
+</LinearLayout>
