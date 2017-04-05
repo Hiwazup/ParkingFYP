@@ -4,29 +4,24 @@
     android:id="@+id/activity_about"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context="com.martin.parkingfyp.About">
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/image_view_about"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:src="@drawable/logo_ucc"
+        android:contentDescription="@string/description_logo"/>
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/image_view_about"
+        android:gravity="center"
+        android:text="@string/about_description"
+        android:textSize="20sp"
+        android:typeface="serif" />
 
-        <ImageView
-            android:id="@+id/image_view_about"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logo_ucc" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/image_view_about"
-            android:gravity="center"
-            android:paddingTop="16dp"
-            android:text="This App Was Created For The Final Year Project Of A Computer Science Student In University College Cork."
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:typeface="serif" />
-
-    </RelativeLayout>
 </RelativeLayout>

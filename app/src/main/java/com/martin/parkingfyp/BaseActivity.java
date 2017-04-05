@@ -1,13 +1,15 @@
 package com.martin.parkingfyp;
 
-import android.*;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.multidex.MultiDex;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -23,22 +25,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.martin.parkingfyp.model.CorkCarPark;
-import com.martin.parkingfyp.model.CorkCarParkDetails;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -59,13 +50,13 @@ public class BaseActivity extends AppCompatActivity implements
     protected DatabaseReference mRef_Hours = mRef.child("opening_hours");
     protected DatabaseReference mRef_Prices = mRef.child("prices");
     protected LatLng destinationLatLng;
+    protected LatLng recommendedCarParkLatLng;
     protected LatLng sourceLatLng;
     protected int position = -1;
 
-    private static final String BASE_URL = "http://data.corkcity.ie/";
     private CorkParkingAPI corkCarPark;
 
-    private String TAG = "Location";
+    protected String TAG = "TAG";
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
@@ -75,7 +66,8 @@ public class BaseActivity extends AppCompatActivity implements
         super.setContentView(fullLayout);
         toolbar = getToolbar();
         navigationView = (NavigationView) findViewById(R.id.navigationView);
-        if (useToolbar()) {setSupportActionBar(toolbar);
+        if (useToolbar()) {
+            setSupportActionBar(toolbar);
         } else {
             toolbar.setVisibility(View.GONE);
         }
@@ -84,10 +76,11 @@ public class BaseActivity extends AppCompatActivity implements
         }
         setUpNavView();
         requestData();
+        mRef.keepSynced(true);
     }
 
-    public static FirebaseDatabase getDatabase(){
-        if(mDatabase == null){
+    public static FirebaseDatabase getDatabase() {
+        if (mDatabase == null) {
             mDatabase = FirebaseDatabase.getInstance();
             mDatabase.setPersistenceEnabled(true);
         }
@@ -95,9 +88,8 @@ public class BaseActivity extends AppCompatActivity implements
     }
 
 
-
     public Toolbar getToolbar() {
-        return (Toolbar)findViewById(R.id.app_bar);
+        return (Toolbar) findViewById(R.id.app_bar);
     }
 
     protected boolean useToolbar() {
@@ -120,13 +112,13 @@ public class BaseActivity extends AppCompatActivity implements
         return true;
     }
 
-    protected void setToolbarText(String text){
+    protected void setToolbarText(String text) {
         TextView title = (TextView) findViewById(R.id.toolbar_title);
         title.setText(text);
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem menuItem) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         fullLayout.closeDrawer(GravityCompat.START);
         return onOptionsItemSelected(menuItem);
     }
@@ -148,7 +140,8 @@ public class BaseActivity extends AppCompatActivity implements
     }
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
-    public boolean checkLocationPermission(){
+
+    public boolean checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(this,
                 android.Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -170,14 +163,15 @@ public class BaseActivity extends AppCompatActivity implements
 
     @TargetApi(Build.VERSION_CODES.M)
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         if (requestCode == MY_PERMISSIONS_REQUEST_LOCATION) {
             if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 //mMap.setMyLocationEnabled(true);
-            } else{
+            } else {
                 boolean showRationale = shouldShowRequestPermissionRationale(android.Manifest.permission.ACCESS_FINE_LOCATION);
-                if(!showRationale){
-                    Toast.makeText(this, "Location Is Required", Toast.LENGTH_LONG).show();
+                Log.d(TAG, "onRequestPermissionsResult: " + showRationale);
+                if (!showRationale) {
+                    Toast.makeText(this, R.string.location_permission_rejected, Toast.LENGTH_LONG).show();
                 }
             }
         } else {
@@ -190,15 +184,16 @@ public class BaseActivity extends AppCompatActivity implements
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+                Retrofit retrofit = new Retrofit.Builder().baseUrl(getString(R.string.base_url)).addConverterFactory(GsonConverterFactory.create()).build();
                 corkCarPark = retrofit.create(CorkParkingAPI.class);
                 Call<CorkCarPark> cork = corkCarPark.getCarParks();
                 cork.enqueue(new Callback<CorkCarPark>() {
                     @Override
                     public void onResponse(Call<CorkCarPark> call, Response<CorkCarPark> response) {
                         ArrayList<CorkCarPark.Result.Records> carParks = response.body().getRecords();
-                        for(CorkCarPark.Result.Records record : carParks){
-                            mRef_Parks.child(record.getName()).child("free_spaces").setValue(record.getFree_spaces());
+                        for (CorkCarPark.Result.Records record : carParks) {
+                            mRef_Parks.child(record.getName()).child(getString(
+                                    R.string.free_spaces_child)).setValue(record.getFree_spaces());
                         }
                     }
 
@@ -211,5 +206,11 @@ public class BaseActivity extends AppCompatActivity implements
             }
         }, 1000);
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(newBase);
+        MultiDex.install(this);
     }
 }

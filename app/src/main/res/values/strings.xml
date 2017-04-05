@@ -5,8 +5,53 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_maps">Map</string>
+    <string name="banner_ad_unit_id">ca-app-pub-2012040621875003/8854179177</string>
 
-    <string name="permission_rationale_location">Access to the location service is required to demonstrate the \'my location\' feature, which shows your current location on the map.</string>
-    <string name="location_permission_denied">This sample requires location permission to enable the \'my location\' layer. Please try again and grant access to use the location.\nIf the permission has been permanently denied, it can be enabled from the System Settings &gt; Apps &gt; \'Google Maps API Demos\'.</string>
-    <string name="permission_required_toast">Location permission is required for this demo.</string>
+    <string name="API_KEY">AIzaSyCVd5qt7xVxoZjU1IGVNlM_Z1rer244nwk</string>
+
+    <string name="dest_marker_title">Destination</string>
+    <string name="curr_marker_title">Current Location</string>
+    <string name="closed_message">This Car Park Is Closed</string>
+    <string name="carpark_details_extra">ZoomToPosition</string>
+    <string name="maps_extra">Name</string>
+    <string name="closed_snippet">Closed\n\nClick For Car Park Details</string>
+    <string name="getting_location_message">Getting Your Location</string>
+    <string name="lost_network_message">Network Lost\nPlease Reconnect</string>
+    <string name="disconnected_message">Disconnected\nPlease Reconnect</string>
+    <string name="no_location_message">Could Not Get Location</string>
+    <string name="connection_failed_message">Could Not Make Connection\nPlease Check Your Settings</string>
+    <string name="day_of_week_format">EEEE</string>
+    <string name="time_format">HH.mm</string>
+    <string name="alpha_order">rank</string>
+    <string name="default_snippet_spaces">Spaces Available\n\nClick For Car Park Details\n Hold For Map Route</string>
+    <string name="default_snippet_no_spaces">No Spaces Available\nClick For Car Park Details\n Hold For Map Route</string>
+    <string name="default_snippet_low_spaces">Limited Spaces Available\nClick For Car Park Details\n Hold For Map Route</string>
+    <string name="opening_soon_snippet">Opening Soon\n\nClick For Car Park Details</string>
+    <string name="closing_soon_snippet">Closing soon\n\nClick For Car Park Details</string>
+    <string name="alert_title">Best Car Park</string>
+    <string name="alert_message">\nEstimated Duration Walking To Destination is %s.  \n\nWould You Like To Be Notified If This Car Park Becomes Unavailable?</string>
+    <string name="alert_positive">Yes</string>
+    <string name="alert_negative">No</string>
+    <string name="country_filter">IE</string>
+    <string name="dest_marker_snippet">Click For Recommendation</string>
+    <string name="location_retrieving_error">An Error Occurred Retrieving That Location</string>
+    <string name="free_spaces_child">free_spaces</string>
+    <string name="a">AIzaSyBZVaVWoVWI7UbGEevT78j1jzYoeUXJAS0</string>
+    <string name="database_ref_carparks">carparks</string>
+    <string name="database_ref_opening_hours">opening_hours</string>
+    <string name="database_ref_prices">prices</string>
+    <string name="base_url">http://data.corkcity.ie/</string>
+    <string name="closed">Closed</string>
+    <string name="open">Open</string>
+    <string name="check_availability_toolbar_text">Availability</string>
+    <string name="about_toolbar_text">About</string>
+    <string name="location_permission_rejected">Location Is Required For Some Features</string>
+    <string name="location_cork">Cork</string>
+    <string name="navigation_header_text">Cork Car Parking    </string>
+    <string name="about_description">This App Was Created For The Final Year Project Of A Computer Science Student In University College Cork.</string>
+    <string name="status_closed">Closed</string>
+    <string name="status_open">View On Map</string>
+    <string name="carpark_details_title">Details</string>
+    <string name="description_logo">UCC Logo</string>
+
 </resources>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="140dp"
-    android:background="@color/colorAccent"
+    android:layout_height="164dp"
+    android:background="@color/colorPrimary"
     android:padding="20dp">
 
     <TextView
@@ -12,7 +12,7 @@
         android:layout_alignParentStart="true"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="University College Cork Computer Science FYP"
+        android:text="@string/navigation_header_text"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold" />

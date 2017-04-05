@@ -9,25 +9,24 @@
     tools:context="com.martin.parkingfyp.CheckAvailability">
 
     <TextView
+        android:id="@+id/location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cork"
         android:gravity="center"
-        android:typeface="serif"
-        android:id="@+id/location"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:background="#ECEFF1"/>
+        android:paddingTop="10dp"
+        android:text="@string/location_cork"
+        android:textSize="24sp"
+        android:typeface="serif" />
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">-->
+        android:layout_height="match_parent">
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvCarPark"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
     </android.support.v4.widget.SwipeRefreshLayout>
-
 </LinearLayout>

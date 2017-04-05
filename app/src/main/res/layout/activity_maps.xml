@@ -7,7 +7,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/map_toolbar"
-        android:background="@color/colorPrimary">
+        android:background="@color/colorPrimary"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:theme="@style/CustomTheme">
         <fragment
             android:id="@+id/place_autocomplete_fragment"
             android:layout_width="match_parent"

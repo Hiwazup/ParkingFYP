@@ -2,17 +2,8 @@ package com.martin.parkingfyp;
 
 import com.martin.parkingfyp.model.CorkCarPark;
 
-import java.util.List;
-
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
-
-/**
- * Created by Martin on 30/01/2017.
- */
 
 public interface CorkParkingAPI {
 
